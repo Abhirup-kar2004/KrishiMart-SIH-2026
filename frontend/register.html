@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign up - KrishiMart</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <a class="brand" href="index.html">KrishiMart</a>
+    <nav id="nav-links"></nav>
+</div>
+
+<div class="container">
+    <div class="form-card">
+        <h2>Create your account</h2>
+        <p style="font-size:0.9rem; color:#6b5f4d;">Choose the account type that matches you.</p>
+
+        <form id="registerForm">
+            <label for="role">I am a</label>
+            <select id="role" required>
+                <option value="farmer">Farmer / FPO (I sell produce)</option>
+                <option value="consumer">Consumer (I buy for my home)</option>
+                <option value="buyer">Bulk Buyer (shop, hotel, mandi trader)</option>
+            </select>
+
+            <label for="name">Full name</label>
+            <input type="text" id="name" placeholder="e.g. Ramesh Kumar" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Choose a password" required>
+
+            <label for="phone">Phone number</label>
+            <input type="text" id="phone" placeholder="10-digit mobile number">
+
+            <label for="state">State</label>
+            <select id="state" required>
+                <option value="">Select your state</option>
+                <option>Andhra Pradesh</option>
+                <option>Bihar</option>
+                <option>Delhi</option>
+                <option>Gujarat</option>
+                <option>Haryana</option>
+                <option>Jharkhand</option>
+                <option>Karnataka</option>
+                <option>Kerala</option>
+                <option>Madhya Pradesh</option>
+                <option>Maharashtra</option>
+                <option>Odisha</option>
+                <option>Punjab</option>
+                <option>Rajasthan</option>
+                <option>Tamil Nadu</option>
+                <option>Telangana</option>
+                <option>Uttar Pradesh</option>
+                <option>Uttarakhand</option>
+                <option>West Bengal</option>
+            </select>
+
+            <label for="city">City / District</label>
+            <select id="city" required disabled>
+                <option value="">Select your state first</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1.3rem;">Sign up</button>
+            <p class="form-msg" id="msg"></p>
+        </form>
+
+        <p style="font-size:0.9rem; margin-top:1rem;">Already have an account? <a href="login.html">Log in</a></p>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

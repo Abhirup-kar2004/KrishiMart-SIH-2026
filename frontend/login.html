@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log in - KrishiMart</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <a class="brand" href="index.html">KrishiMart</a>
+    <nav id="nav-links"></nav>
+</div>
+
+<div class="container">
+    <div class="form-card">
+        <h2>Log in</h2>
+
+        <form id="loginForm">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="you@example.com" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Your password" required>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:1.3rem;">Log in</button>
+            <p class="form-msg" id="msg"></p>
+        </form>
+
+        <p style="font-size:0.9rem; margin-top:1rem;">New here? <a href="register.html">Create an account</a></p>
+
+        <div style="margin-top:1.2rem; font-size:0.8rem; color:#6b5f4d; border-top:1px solid var(--border-soft); padding-top:0.8rem;">
+            Demo logins (password: <strong>123456</strong>)<br>
+            Farmer: ramesh@krishimart.com &nbsp;|&nbsp; Consumer: anjali@krishimart.com &nbsp;|&nbsp; Buyer: buyer@krishimart.com
+        </div>
+    </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

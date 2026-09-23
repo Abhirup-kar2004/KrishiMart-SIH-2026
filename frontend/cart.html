@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart - KrishiMart</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <a class="brand" href="index.html">KrishiMart</a>
+    <nav id="nav-links"></nav>
+</div>
+
+<div class="container">
+    <h2>Your Cart</h2>
+    <div id="cartTableWrap"></div>
+    <div id="emptyCart" class="empty-state" style="display:none;">
+        Your cart is empty. <a href="marketplace.html">Go to the marketplace</a> to add some produce.
+    </div>
+
+    <div style="text-align:right; margin-top:1rem;">
+        <h3>Total: Rs. <span id="cartTotal">0</span></h3>
+        <button class="btn btn-primary" id="checkoutBtn" onclick="checkout()">Place Order</button>
+    </div>
+    <p class="form-msg" id="msg"></p>
+</div>
+
+<footer>KrishiMart</footer>
+
+<script src="js/api.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>

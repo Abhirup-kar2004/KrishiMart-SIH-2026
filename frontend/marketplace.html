@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketplace - KrishiMart</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <a class="brand" href="index.html">KrishiMart</a>
+    <nav id="nav-links"></nav>
+</div>
+
+<div class="container">
+    <div class="section-head">
+        <h2>Marketplace</h2>
+        <a href="cart.html" class="btn btn-outline">View Cart (<span id="cartCount">0</span>)</a>
+    </div>
+
+    <div class="toolbar">
+        <div>
+            <label for="search">Search produce</label>
+            <input type="text" id="search" placeholder="e.g. tomato, rice...">
+        </div>
+        <div>
+            <label for="category">Category</label>
+            <select id="category">
+                <option value="">All categories</option>
+                <option value="Vegetable">Vegetable</option>
+                <option value="Fruit">Fruit</option>
+                <option value="Grain">Grain</option>
+                <option value="Oil">Oil</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div style="flex:0;">
+            <label>&nbsp;</label>
+            <button class="btn btn-primary" onclick="loadProducts()">Search</button>
+        </div>
+    </div>
+
+    <div id="productGrid" class="grid"></div>
+    <div id="emptyState" class="empty-state" style="display:none;">No products found. Try a different search.</div>
+</div>
+
+<footer>KrishiMart &mdash; MCA Mini Project</footer>
+
+<script src="js/api.js"></script>
+<script src="js/marketplace.js"></script>
+</body>
+</html>

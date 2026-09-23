@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard - KrishiMart</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="navbar">
+    <a class="brand" href="index.html">KrishiMart</a>
+    <nav id="nav-links"></nav>
+</div>
+<div class="container">
+    <h2>Admin Dashboard</h2>
+    <p id="adminMsg" class="form-msg"></p>
+    <div class="stats-row" id="summary"></div>
+
+    <h3>Registered Users</h3>
+    <div id="usersWrap"></div>
+
+    <h3 style="margin-top:2.5rem;">Listed Products</h3>
+    <div id="productsWrap"></div>
+
+    <h3 style="margin-top:2.5rem;">Orders</h3>
+    <div id="ordersWrap"></div>
+</div>
+<script src="js/api.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

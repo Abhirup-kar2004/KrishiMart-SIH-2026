@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders - KrishiMart</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <a class="brand" href="index.html">KrishiMart</a>
+    <nav id="nav-links"></nav>
+</div>
+
+<div class="container">
+    <h2>My Orders</h2>
+    <div id="ordersWrap"></div>
+    <div id="emptyOrders" class="empty-state" style="display:none;">
+        You haven't placed any orders yet. <a href="marketplace.html">Browse the marketplace</a>.
+    </div>
+
+    <h2 style="margin-top:2.5rem;">Nearest Farmers</h2>
+    <p style="color:#6b5f4d; font-size:0.9rem;">
+        Sorted by distance from your registered location &mdash; a simple version of route optimization
+        that helps plan the shortest pickup/delivery path.
+    </p>
+    <div id="nearbyWrap"></div>
+</div>
+
+<footer>KrishiMart &mdash; MCA Mini Project</footer>
+
+<script src="js/api.js"></script>
+<script src="js/orders.js"></script>
+</body>
+</html>
