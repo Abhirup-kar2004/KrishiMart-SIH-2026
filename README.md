@@ -1,113 +1,697 @@
-# KrishiMart
+# 🌾 KrishiMart – SIH 2026
 
-A simple digital marketplace that connects farmers directly with consumers and
-bulk buyers — built for the problem statement *"Multiple intermediaries reduce
-farmers' earnings and increase consumer prices"* (Ministry of Consumer Affairs,
-Food & Public Distribution).
+## Smart Digital Marketplace for Farmers
 
-Think of it like three separate counters in one shop: a **farmer's counter**
-(list produce), a **buyer's counter** (browse and order), and a small
-**insights corner** (simple demand forecast + nearest-farmer distances) —
-all talking to one shared MySQL "ledger" in the back room.
+KrishiMart is a digital **agricultural marketplace** designed to connect **farmers directly with consumers and bulk buyers**, helping reduce the impact of multiple intermediaries on farmer earnings and consumer prices.
 
-## Tech stack
-- **Frontend:** plain HTML, CSS, JavaScript (no framework, no build step)
-- **Backend:** Python + Flask (a small set of API routes)
-- **Database:** MySQL
+The platform provides dedicated interfaces for farmers, consumers, bulk buyers, and administrators, along with product listing, marketplace browsing, cart and order management, demand estimation, and location-based farmer information.
 
-## Folder structure
+---
+
+## 🎯 Problem Statement
+
+> **"Multiple intermediaries reduce farmers' earnings and increase consumer prices."**
+
+KrishiMart addresses this problem by providing a digital platform where farmers can list their agricultural products and consumers or bulk buyers can directly discover and purchase them.
+
+The platform aims to make agricultural trade more direct, transparent, and accessible.
+
+---
+
+## 💡 Our Solution
+
+KrishiMart creates a digital connection between farmers and buyers through a simple agricultural marketplace.
+
+### 👨‍🌾 Farmers can:
+
+- Register and log in
+- Create agricultural product listings
+- Set product prices
+- Manage available stock
+- View their listed products
+- Remove products
+- View orders received
+- View demand estimation
+
+### 🛒 Consumers can:
+
+- Register and log in
+- Browse agricultural products
+- Search products
+- Filter products by category
+- View product information
+- Add products to cart
+- Place orders
+- View previous orders
+- Manage their profile
+
+### 🏢 Bulk Buyers can:
+
+- Register and log in
+- Browse agricultural products
+- Search and filter products
+- Add products to cart
+- Place orders
+- View order history
+
+### 👨‍💼 Administrator
+
+The project includes an administrator dashboard interface for viewing:
+
+- User information
+- Product information
+- Order information
+- Marketplace statistics
+
+---
+
+## ✨ Key Features
+
+### 👨‍🌾 Farmer Dashboard
+
+- Farmer registration and login
+- Add agricultural products
+- View listed products
+- Remove products
+- Set product price and quantity
+- View total listed products
+- View total available stock
+- View orders received
+- View demand estimation
+
+### 🛒 Marketplace
+
+- Browse agricultural products
+- Search products
+- Filter products by category
+- View product price
+- View available quantity
+- View farmer name
+- View farmer city
+- Add products to cart
+
+### 🛍️ Cart & Orders
+
+- Add products to cart
+- Increase product quantity
+- Place orders
+- Calculate order total
+- Reduce product stock after an order
+- View previous orders
+- View order details
+- View orders received by farmers
+
+### 🔐 Authentication
+
+- User registration
+- User login
+- Multiple user roles
+- Farmer account
+- Consumer account
+- Bulk buyer account
+- Administrator account
+- Browser-based login state using Local Storage
+
+### 📊 Demand Estimation
+
+The system uses historical order information to calculate an estimated demand for each product.
+
+### 📍 Nearby Farmers
+
+The system calculates the geographical distance between a buyer and registered farmers using the **Haversine formula**.
+
+---
+
+## 📊 Insights
+
+### Demand Estimation
+
+The backend provides a demand-estimation endpoint that calculates:
+
+```text
+Average Quantity Ordered
+        =
+Total Ordered Quantity
+        ÷
+Number of Times Ordered
 ```
-krishimart/
-├── database/
-│   └── schema.sql          <- run this first to create the database & tables
+
+The calculated average is returned as the estimated demand for the next order cycle.
+
+This is a simple and explainable statistical approach. It can be extended to a more advanced machine-learning or time-series forecasting model in the future.
+
+### Nearby Farmers
+
+The system stores latitude and longitude information for users.
+
+For the nearby-farmer feature:
+
+1. The buyer provides latitude and longitude.
+2. The system retrieves registered farmers with location information.
+3. The Haversine formula calculates the distance.
+4. Farmers are sorted from nearest to farthest.
+
+This provides a foundation for future logistics and route-optimization functionality.
+
+---
+
+## 🏗️ System Architecture
+
+```mermaid
+flowchart TD
+
+    A[Farmers] --> B[KrishiMart Platform]
+    C[Consumers] --> B
+    D[Bulk Buyers] --> B
+    E[Administrator] --> B
+
+    B --> F[Frontend]
+    F --> G[HTML / CSS / JavaScript]
+
+    G --> H[Backend]
+    H --> I[Node.js + Express.js]
+
+    I --> J[Authentication API]
+    I --> K[Products API]
+    I --> L[Orders API]
+    I --> M[Insights API]
+
+    J --> O[(MySQL Database)]
+    K --> O
+    L --> O
+    M --> O
+
+    M --> P[Demand Estimation]
+    M --> Q[Haversine Distance]
+```
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+- HTML5
+- CSS3
+- JavaScript
+- Browser Local Storage
+
+### Backend
+
+- Node.js
+- Express.js
+- REST APIs
+- CORS
+
+### Database
+
+- MySQL
+- MySQL2
+
+### Development Tools
+
+- Visual Studio Code
+- MySQL Workbench
+- Git
+- GitHub
+
+---
+
+## 📂 Project Structure
+
+```text
+KrishiMart-SIH-2026/
+│
 ├── backend/
-│   ├── app.py               <- starts the Flask API server
-│   ├── requirements.txt     <- Python dependencies
-│   ├── config/db.js         <- MySQL connection settings
-│   └── routes/               <- one file per feature (auth, products, orders, insights)
-└── frontend/
-    ├── index.html, login.html, register.html, marketplace.html,
-    │   cart.html, my-orders.html, farmer-dashboard.html
-    ├── css/style.css
-    └── js/                   <- one small JS file per page
+│   ├── server.js
+│   ├── package.json
+│   ├── app.py
+│   ├── requirements.txt
+│   │
+│   ├── config/
+│   │   └── db.js
+│   │
+│   └── routes/
+│       ├── authRoutes.js
+│       ├── insightsRoutes.js
+│       ├── orderRoutes.js
+│       └── productRoutes.js
+│
+├── database/
+│   └── schema.sql
+│
+├── frontend/
+│   ├── css/
+│   │   └── style.css
+│   │
+│   ├── js/
+│   │   ├── admin.js
+│   │   ├── api.js
+│   │   ├── auth.js
+│   │   ├── cart.js
+│   │   ├── farmer.js
+│   │   ├── marketplace.js
+│   │   ├── orders.js
+│   │   └── profile.js
+│   │
+│   ├── admin-dashboard.html
+│   ├── cart.html
+│   ├── farmer-dashboard.html
+│   ├── index.html
+│   ├── login.html
+│   ├── marketplace.html
+│   ├── my-orders.html
+│   ├── profile.html
+│   └── register.html
+│
+└── README.md
 ```
 
-## How to run it (step by step)
+---
 
-### 1. Create the database
-1. Open MySQL (Workbench, phpMyAdmin, or the `mysql` command line).
-2. Run the entire `database/schema.sql` file. This creates the `krishimart`
-   database, all 4 tables, and a few sample farmers/products/consumers so the
-   app isn't empty on first run.
+## 🗄️ Database
 
-### 2. Start the backend
-```
-cd backend
-python -m venv .venv
-.venv\Scripts\activate
-pip install -r requirements.txt
-```
-The backend defaults to MySQL user `root` with an empty password. If your
-MySQL installation uses a password, set these PowerShell variables before
-starting Flask:
-```
-$env:MYSQL_USER = "root"
-$env:MYSQL_PASSWORD = "your-mysql-password"
-$env:MYSQL_DATABASE = "krishimart"
-python app.py
+KrishiMart uses **MySQL** as its central database.
+
+### Users Table
+
+The `users` table stores:
+
+- User ID
+- Name
+- Email
+- Password
+- Role
+- Phone
+- Address
+- State
+- City
+- Latitude
+- Longitude
+- Registration date
+
+Supported roles:
+
+```text
+farmer
+consumer
+buyer
+admin
 ```
 
-If you already created the database using an older version of the schema, run
-this once before starting the backend:
-```
-ALTER TABLE users ADD COLUMN state VARCHAR(100) AFTER address;
-ALTER TABLE users MODIFY role ENUM('farmer', 'consumer', 'buyer', 'admin') NOT NULL;
+### Products Table
+
+The `products` table stores:
+
+- Product ID
+- Farmer ID
+- Product name
+- Category
+- Price
+- Unit
+- Available quantity
+- Description
+- Product image URL
+- Creation date
+
+### Orders Table
+
+The `orders` table stores:
+
+- Order ID
+- Buyer ID
+- Total amount
+- Order status
+- Order date
+
+### Order Items Table
+
+The `order_items` table stores:
+
+- Order item ID
+- Order ID
+- Product ID
+- Farmer ID
+- Quantity
+- Price
+
+---
+
+## 🔗 Backend API
+
+The Node.js backend runs on port `5000`.
+
+Base API URL:
+
+```text
+http://localhost:5000/api
 ```
 
-To create an administrator account, run this in MySQL after creating the
-database:
+### Authentication
+
+```text
+/api/auth
 ```
-INSERT INTO users (name, email, password, role, state, city)
-VALUES ('Administrator', 'admin@krishimart.com', 'change-this-password', 'admin', 'West Bengal', 'Kolkata');
+
+Provides:
+
+- User registration
+- User login
+
+### Products
+
+```text
+/api/products
 ```
-Change the example password before using the account.
 
+Provides:
+
+- Get products
+- Search products
+- Filter products by category
+- Get products of a farmer
+- Add products
+- Remove products
+
+### Orders
+
+```text
+/api/orders
 ```
-python app.py
+
+Provides:
+
+- Place orders
+- Get buyer orders
+- Get farmer orders
+
+### Insights
+
+```text
+/api/insights
 ```
-The API runs at `http://localhost:5000`.
 
-### 3. Open the frontend
-Just double-click `frontend/index.html` to open it in your browser — or, for
-a smoother experience, right-click it in VS Code and choose **"Open with Live
-Server"**. No build step, no npm install needed on the frontend side.
+Provides:
 
-### 4. Try it out
-- Demo accounts (password `123456` for all):
-  - Farmer: `ramesh@krishimart.com`
-  - Consumer: `anjali@krishimart.com`
-  - Bulk buyer: `buyer@krishimart.com`
-- Log in as the farmer to add a product, then log out and log in as the
-  consumer to browse the marketplace, add it to cart, and place an order.
-- Log back in as the farmer to see the order under **Orders Received**, and
-  check **Demand Forecast** at the bottom of the dashboard.
+- Demand estimation
+- Nearby farmer calculation
 
-## How each requirement from the problem statement is covered
+---
 
-| Requirement | Where it lives |
+## 📊 Problem Statement Implementation
+
+| Requirement | KrishiMart Implementation |
 |---|---|
-| Connects farmers/FPOs directly with consumers and bulk buyers | `register.html` (3 account types) + `marketplace.html` (buy directly from a farmer's listing, no middleman) |
-| Logistics support | `my-orders.html` → "Nearest Farmers" table, using each user's saved location |
-| AI for demand forecasting | `/api/insights/demand-forecast` — a simple moving-average of past orders per product, shown on the farmer dashboard |
-| AI for route optimization | `/api/insights/nearby-farmers` — Haversine distance formula sorts farmers nearest-first, a simple explainable stand-in for route optimization |
-| Better prices for farmers / lower prices for consumers | No commission layer — farmers set their own price, buyers pay that price directly |
+| Direct farmer-buyer connection | Farmers can list agricultural products for buyers |
+| Consumer access | Consumers can browse products and place orders |
+| Bulk buyer access | Dedicated bulk buyer role |
+| Digital marketplace | Agricultural products are displayed through the marketplace |
+| Product management | Farmers can add and remove their products |
+| Order management | Buyers can place orders and farmers can view received orders |
+| Demand insights | Historical order data is used for demand estimation |
+| Location support | Latitude and longitude can be stored for users |
+| Nearby farmers | Haversine formula is used for distance calculation |
+| Price transparency | Farmers define the selling price of their products |
 
-## Notes for your submission / viva
-- Passwords are stored in plain text here for simplicity. If asked in a viva,
-  mention that a real system would use password hashing (e.g. `bcrypt`).
-- The "AI" features are intentionally simple (average and distance formulas)
-  so you can explain the exact logic line by line — this is normal and
-  expected for a beginner/academic project; you can always mention it as a
-  "first version" that could later use a real ML model (e.g. time-series
-  forecasting for demand, or a proper route-optimization algorithm like
-  nearest-neighbour/TSP for logistics).
+---
+
+## 👤 User Flow
+
+### Farmer
+
+```text
+Register
+   ↓
+Login
+   ↓
+Farmer Dashboard
+   ↓
+Add Product
+   ↓
+Product Listed
+   ↓
+Receive Orders
+   ↓
+View Demand Estimation
+```
+
+### Consumer / Bulk Buyer
+
+```text
+Register
+   ↓
+Login
+   ↓
+Marketplace
+   ↓
+Search / Filter Products
+   ↓
+Add to Cart
+   ↓
+Place Order
+   ↓
+View Orders
+```
+
+### Administrator
+
+```text
+Admin Login
+     ↓
+Admin Dashboard
+     ↓
+View Users
+     ↓
+View Products
+     ↓
+View Orders
+```
+
+---
+
+## 🚀 How to Run
+
+### Prerequisites
+
+Install:
+
+- Node.js
+- MySQL
+- MySQL Workbench
+- Visual Studio Code
+- Modern web browser
+
+---
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Abhirup-kar2004/KrishiMart-SIH-2026.git
+cd KrishiMart-SIH-2026
+```
+
+---
+
+### 2. Create the Database
+
+Open **MySQL Workbench**.
+
+Open:
+
+```text
+database/schema.sql
+```
+
+Run the complete SQL script.
+
+This creates the:
+
+```text
+krishimart
+```
+
+database and the required tables.
+
+The SQL file also contains sample users and sample agricultural products for demonstration.
+
+---
+
+### 3. Configure MySQL
+
+Open:
+
+```text
+backend/config/db.js
+```
+
+The default local configuration expects:
+
+```text
+Host: localhost
+User: root
+Database: krishimart
+Port: MySQL default port
+```
+
+Set your own MySQL password in the local configuration if required.
+
+**Do not upload real passwords or private credentials to GitHub.**
+
+---
+
+### 4. Install Backend Dependencies
+
+Open a terminal inside the backend folder:
+
+```bash
+cd backend
+npm install
+```
+
+---
+
+### 5. Start the Backend
+
+Run:
+
+```bash
+node server.js
+```
+
+Or use:
+
+```bash
+npm start
+```
+
+The backend will run at:
+
+```text
+http://localhost:5000
+```
+
+You should see:
+
+```text
+KrishiMart server running at http://localhost:5000
+```
+
+---
+
+### 6. Start the Frontend
+
+Open:
+
+```text
+frontend/index.html
+```
+
+You can also use **VS Code Live Server**.
+
+The frontend communicates with the backend through:
+
+```text
+http://localhost:5000/api
+```
+
+---
+
+## 🧪 Sample Database Data
+
+The `database/schema.sql` file includes sample data for demonstration.
+
+### Farmer
+
+```text
+Name: Ramesh Kumar
+Email: ramesh@krishimart.com
+Role: farmer
+```
+
+### Farmer
+
+```text
+Name: Sita Devi
+Email: sita@krishimart.com
+Role: farmer
+```
+
+### Consumer
+
+```text
+Name: Anjali Roy
+Email: anjali@krishimart.com
+Role: consumer
+```
+
+### Bulk Buyer
+
+```text
+Name: Green Hotel Pvt Ltd
+Email: buyer@krishimart.com
+Role: buyer
+```
+
+The sample database currently uses the demonstration password:
+
+```text
+123456
+```
+
+> These are prototype/demo credentials only and should not be used in a production deployment.
+
+---
+
+## 🔐 Security Considerations
+
+This project is developed as a **hackathon prototype**.
+
+The current authentication implementation is simplified for demonstration purposes.
+
+For production deployment, the following improvements should be implemented:
+
+- Password hashing using bcrypt or another secure hashing method
+- Secure authentication and session management
+- Role-based authorization
+- Input validation
+- Environment variables for credentials
+- HTTPS
+- Secure database configuration
+- Protection against SQL injection
+- Secure handling of user information
+- Proper access control for API endpoints
+
+---
+
+## 🔮 Future Scope
+
+KrishiMart can be further enhanced with:
+
+- Machine-learning based demand forecasting
+- Real-time agricultural market prices
+- Online payment integration
+- Farmer and FPO verification
+- Real-time order tracking
+- Advanced route optimization
+- Multilingual support
+- Mobile application
+- Weather-based agricultural insights
+- Push notifications
+- Cloud deployment
+- Advanced analytics and reporting
+- Secure production authentication
+- Scalable cloud database infrastructure
+
+---
+
+## 📌 Project Status
+
+**Prototype – Smart India Hackathon 2026**
+
+KrishiMart demonstrates a digital agricultural marketplace with farmer, consumer, bulk buyer, and administrator interfaces, product listing and discovery, cart and order management, MySQL database integration, demand estimation, and location-based nearby farmer functionality.
+
+---
+
+## 📄 License
+
+This project was developed as part of **Smart India Hackathon 2026** for educational and hackathon purposes.
