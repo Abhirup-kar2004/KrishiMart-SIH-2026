@@ -683,6 +683,22 @@ KrishiMart can be further enhanced with:
 - Scalable cloud database infrastructure
 
 ---
+## 🖥️ Application Preview
+
+### 🏠 Home Page
+![KrishiMart Home Page](Screenshot/home.png)
+
+### 🔐 Login Page
+![KrishiMart Login Page](Screenshot/login_page.png)
+
+### 🛒 Marketplace
+![KrishiMart Marketplace](Screenshot/marketplace.png)
+
+### 👨‍🌾 Farmer Dashboard
+![KrishiMart Farmer Dashboard](Screenshot/farmer_dashboard.png)
+
+### 🛍️ Shopping Cart
+![KrishiMart Shopping Cart](Screenshot/cart.png)
 
 ## 📌 Project Status
 
